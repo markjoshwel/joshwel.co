@@ -14,7 +14,7 @@ Check it out here: <https://joshwel.co>
 I use the following workflow:
 
 1. Run [watching commands](#watching-commands)  
-   Usually not run if small changes are only needed.
+   _Skip if only making small changes._
 
 2. Work on the website
 
