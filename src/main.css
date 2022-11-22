@@ -1,0 +1,105 @@
+@tailwind base;
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        @apply colour-heading;
+        font-family: "font-heading";
+    }
+    h1 { @apply text-6xl; }
+    h2 { @apply text-5xl; }
+    h3 { @apply text-4xl; }
+    h4 { @apply text-3xl; }
+    h5 { @apply text-2xl; }
+    h6 { @apply text-xl; }
+    p { @apply mt-3 colour-text; }
+};
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: "font-heading";
+    src: url("./assets/thirdparty/font-SpaceGroteskS.woff2") format("woff2");
+    font-weight: 700;
+    font-style:   normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "font-text";
+    src: url("./assets/thirdparty/font-iAWriterQuattroV.woff2") format("woff2");
+    font-weight:  400;
+    font-style:   normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "font-text";
+    src: url("./assets/thirdparty/font-iAWriterQuattroV-Italic.woff2") format("woff2");
+    font-weight:  400;
+    font-style:   italic;
+    font-display: swap;
+}
+
+:root {
+    --accent-primary:         hsl(257 64% 41%);   /* pantone 2068 c */
+    --accent-secondary-light: hsl(256 35% 47%);   /* pantone 2096 c */
+    --accent-secondary-dark:  hsl(256 33% 55%);   /* pantone 2095 c */
+    --neutral-light:          hsl(224 100% 98%);  /* pantone 11-0700 tcx */
+    --neutral-dark:           hsl(240 8% 7%);     /* pantone black 3 2x */
+
+    /* defaults */
+    --accent-secondary: var(--accent-secondary-light);
+    --neutral-text:     var(--neutral-dark);
+    --neutral-bg:       var(--neutral-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    .dark {
+        display: none;
+    }
+
+    :root {
+        --accent-secondary: var(--accent-secondary-dark);
+        --neutral-text:     var(--neutral-light);
+        --neutral-bg:       var(--neutral-dark);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .light {
+        display: none;
+    }
+}
+
+.light:checked,
+.light:checked + * + *,
+.light:checked + * + * > h1,
+.light:checked + * + * > p  {
+    --accent-secondary: var(--accent-secondary-light);
+    --neutral-text:     var(--neutral-dark);
+    --neutral-bg:       var(--neutral-light);
+}
+
+.dark:checked,
+.dark:checked + * + *,
+.dark:checked + * + * > h1,
+.dark:checked + * + * > p {
+    --accent-secondary: var(--accent-secondary-dark);
+    --neutral-text:     var(--neutral-light);
+    --neutral-bg:       var(--neutral-dark);
+}
+
+* { background: var(--neutral-bg) }
+.colour-heading { @apply text-[var(--accent-secondary)] }
+.colour-text { @apply text-[var(--neutral-text)] }
+.light, .dark {
+    @apply
+        absolute z-[2]
+        bottom-6 right-6
+        w-20 h-20
+        rounded-[100%]
+        bg-[var(--neutral-text)]
+        select-none
+        text-center
+    ;
+}

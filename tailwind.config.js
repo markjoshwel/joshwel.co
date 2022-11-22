@@ -5,9 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['GNU FreeSans', ...defaultTheme.fontFamily.sans],
+        'sans': ['font-text', ...defaultTheme.fontFamily.sans],
       },
     },
   },
-  plugins: [],
 }
