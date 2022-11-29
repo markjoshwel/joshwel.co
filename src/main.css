@@ -1,16 +1,15 @@
 @tailwind base;
 @layer base {
     h1, h2, h3, h4, h5, h6 {
-        @apply colour-heading;
+        @apply text-[color:var(--accent-secondary)];
         font-family: "font-heading";
     }
-    h1 { @apply text-6xl; }
-    h2 { @apply text-5xl; }
-    h3 { @apply text-4xl; }
-    h4 { @apply text-3xl; }
-    h5 { @apply text-2xl; }
-    h6 { @apply text-xl; }
-    p { @apply mt-3 colour-text; }
+    h1, h2 { @apply text-6xl }
+    h3 { @apply text-5xl }
+    h4 { @apply text-4xl }
+    h5 { @apply text-3xl }
+    h6 { @apply text-2xl }
+    p { @apply mt-3 text-lg }
 };
 @tailwind components;
 @tailwind utilities;
@@ -41,24 +40,48 @@
 }
 
 :root {
-    --accent-primary:         hsl(257 64% 41%);   /* pantone 2068 c */
+    --accent-primary:         hsl(257 64% 41%);   /* pantone 2098 c */
+    /* --accent-primary:         hsl(255 47% 50%);   pantone 2097 c */
     --accent-secondary-light: hsl(256 35% 47%);   /* pantone 2096 c */
     --accent-secondary-dark:  hsl(256 33% 55%);   /* pantone 2095 c */
     --neutral-light:          hsl(224 100% 98%);  /* pantone 11-0700 tcx */
     --neutral-dark:           hsl(240 8% 7%);     /* pantone black 3 2x */
 
-    /* defaults */
+}
+
+.theme {
+    @apply
+        p-8 min-w-full min-h-screen
+        text-[color:var(--neutral-text)]
+        bg-[color:var(--neutral-bg)];
+    ;
+
+    /* default theme to light */
     --accent-secondary: var(--accent-secondary-light);
     --neutral-text:     var(--neutral-dark);
     --neutral-bg:       var(--neutral-light);
 }
 
-@media (prefers-color-scheme: dark) {
-    .dark {
-        display: none;
-    }
+.toggle-dark:checked ~ .theme {
+    --accent-secondary: var(--accent-secondary-dark);
+    --neutral-text:     var(--neutral-light);
+    --neutral-bg:       var(--neutral-dark);
+}
 
-    :root {
+.toggle-light:checked ~ .theme {
+    --accent-secondary: var(--accent-secondary-light);
+    --neutral-text:     var(--neutral-dark);
+    --neutral-bg:       var(--neutral-light);
+}
+
+.label-light, .label-dark { @apply hidden text-[color:var(--neutral-text)] }
+
+@media (prefers-color-scheme: dark) {
+    .label-light { display: unset }
+    .label-dark { display: none }
+
+    .theme {
+        /* change default theme to dark */
         --accent-secondary: var(--accent-secondary-dark);
         --neutral-text:     var(--neutral-light);
         --neutral-bg:       var(--neutral-dark);
@@ -66,40 +89,36 @@
 }
 
 @media (prefers-color-scheme: light) {
-    .light {
-        display: none;
-    }
+    .label-dark { display: unset }
+    .label-light { display: none }
 }
 
-.light:checked,
-.light:checked + * + *,
-.light:checked + * + * > h1,
-.light:checked + * + * > p  {
-    --accent-secondary: var(--accent-secondary-light);
-    --neutral-text:     var(--neutral-dark);
-    --neutral-bg:       var(--neutral-light);
-}
-
-.dark:checked,
-.dark:checked + * + *,
-.dark:checked + * + * > h1,
-.dark:checked + * + * > p {
-    --accent-secondary: var(--accent-secondary-dark);
-    --neutral-text:     var(--neutral-light);
-    --neutral-bg:       var(--neutral-dark);
-}
-
-* { background: var(--neutral-bg) }
-.colour-heading { @apply text-[var(--accent-secondary)] }
-.colour-text { @apply text-[var(--neutral-text)] }
-.light, .dark {
+.toggle-dark, .toggle-light {
     @apply
-        absolute z-[2]
-        bottom-6 right-6
-        w-20 h-20
-        rounded-[100%]
-        bg-[var(--neutral-text)]
-        select-none
-        text-center
+        w-[1px] h-[1px] m-[-1] p-[0]
+        absolute overflow-hidden whitespace-nowrap
+        text-[color:var(--neutral-text)]
     ;
+    clip: rect(0 0 0 0);
+    border: 0;
+}
+
+.label-dark, .label-light {
+    margin-bottom: 1em;
+ }
+
+.label-dark::before {
+    content: "go dark";
+}
+
+.toggle-dark:checked ~ .theme .label-dark::before {
+    content: "go light";
+}
+
+.label-light::before {
+    content: "go light";
+}
+
+.toggle-light:checked ~ .theme .label-light::before {
+    content: "go dark";
 }
