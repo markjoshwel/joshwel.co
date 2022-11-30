@@ -1,5 +1,11 @@
-node_modules/
+__pycache__/
+*.py[cod]
+*$py.class[\
 
-public/**/*.html
-public/**/*.css
-public/main.min.css
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+dist/*
+
+node_modules/
