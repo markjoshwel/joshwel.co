@@ -108,17 +108,17 @@
  }
 
 .label-dark::before {
-    content: "go dark";
+    content: "[go dark]";
 }
 
 .toggle-dark:checked ~ .theme .label-dark::before {
-    content: "go light";
+    content: "[go light]";
 }
 
 .label-light::before {
-    content: "go light";
+    content: "[go light]";
 }
 
 .toggle-light:checked ~ .theme .label-light::before {
-    content: "go dark";
+    content: "[go dark]";
 }
