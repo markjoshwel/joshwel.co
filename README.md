@@ -2,23 +2,53 @@ Source files for my personal website that I host using GitHub Pages.
 
 Check it out here: <https://joshwel.co>
 
+- [Prerequisites and Setup](#prerequisites-and-setup)
 - [Development](#development)
-  - [Shorthands](#shorthands)
-  - [Developing](#developing)
-  - [Building/Publishing](#buildingpublishing)
-
+- [Writing](#writiing)
 - [Licence](#licence)
+
+## Prerequisites and Setup
+
+There are two independent sets of instructions that can be followed.
+
+- [For Developing](#for-developing): For developing of the websites' HTML/CSS.
+
+- [For Writing](#for-writing): For writing content for the website.
+
+### For Developing
+
+1. Install [Node](https://nodejs.org/en/) or [Bun](https://bun.sh/), both have been tested to work.
+
+2. Install the projects' dependencies
+
+   ```shell
+   npm install  # or bun install
+   ```
+
+3. You're all set! See [Development](#development) for more information on workflow and commands.
+
+### For Writing
+
+1. Install [Poetry](https://python-poetry.org/docs/#installing-with-the-official-installer)
+
+2. Install the projects' dependencies
+
+   ```shell
+   poetry install
+   ```
+
+3. You're all set! See [Writing](#writing) for more information on workflow and commands.
 
 ## Development
 
 I use the following workflow:
 
-1. Run [watching commands](#watching-commands)  
+1. Run appropriate [watching commands](#watching-commands)  
    _Skip if only making small changes._
 
 2. Work on the website
 
-3. Run `npm run all+publish` [shorthand command](#shorthands-commands)
+3. Run `npm run all` [shorthand command](#shorthands-commands)
 
 **Note:** Run all commands in the root of the repository!
 
@@ -26,7 +56,6 @@ I use the following workflow:
 
 ```shell
 npm run all          # runs all build and post scripts
-npm run all+publish  # same as 'all' but publish
 ```
 
 ### Watching Commands
@@ -40,13 +69,29 @@ npm run dev:watch-css
 
 Preview the website from `public/index.html`.
 
-### Building/Publishing Commands
+### Building Commands
 
 ```shell
 npm run build    # build css using tailwind
 npm run post     # clean css and html
-npm run publish  # publish using gh-pages
 ```
+
+## Writing
+
+> **Note**
+> These instructions are not concrete yet.
+
+I use the following workflow:
+
+1. Write content in Markdown
+
+2. Place the Markdown file in `src/txt/`
+
+3. Generate the page
+
+   ```shell
+   poetry run jcogen 
+   ```
 
 ## Licence
 
