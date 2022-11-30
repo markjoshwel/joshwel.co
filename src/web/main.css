@@ -1,31 +1,32 @@
 @tailwind base;
 @layer base {
     h1, h2, h3, h4, h5, h6 {
-        @apply text-[color:var(--accent-secondary)];
+        @apply text-[color:var(--accent-secondary)] mb-5;
         font-family: "font-heading";
+        font-variation-settings: 'wght' 500;
     }
-    h1, h2 { @apply text-6xl }
+    h1, h2, .logo { @apply text-6xl }
     h3 { @apply text-5xl }
     h4 { @apply text-4xl }
     h5 { @apply text-3xl }
     h6 { @apply text-2xl }
-    p { @apply mt-3 text-lg }
+    p { @apply mt-3 text-normal }
+    a { @apply hover:cursor-pointer hover:text-[color:var(--accent-secondary)] }
 };
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
     font-family: "font-heading";
-    src: url("./assets/thirdparty/font-SpaceGroteskS.woff2") format("woff2");
-    font-weight: 700;
+    src: url("./assets/thirdparty/font-SpaceGroteskV.woff2") format("woff2");
+    font-weight: 400;
     font-style:   normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: "font-text";
-    src: url("./assets/thirdparty/font-iAWriterQuattroV.woff2") format("woff2");
+    src: url("./assets/thirdparty/font-iAWriterQuattroS.woff2") format("woff2");
     font-weight:  400;
     font-style:   normal;
     font-display: swap;
@@ -40,8 +41,8 @@
 }
 
 :root {
-    --accent-primary:         hsl(257 64% 41%);   /* pantone 2098 c */
-    /* --accent-primary:         hsl(255 47% 50%);   pantone 2097 c */
+    /* --accent-primary:         hsl(257 64% 41%);   pantone 2098 c */
+    --accent-primary:         hsl(255 47% 50%);   /* pantone 2097 c */
     --accent-secondary-light: hsl(256 35% 47%);   /* pantone 2096 c */
     --accent-secondary-dark:  hsl(256 33% 55%);   /* pantone 2095 c */
     --neutral-light:          hsl(224 100% 98%);  /* pantone 11-0700 tcx */
@@ -49,9 +50,13 @@
 
 }
 
+html, body {
+    height: 100%
+}
+
 .theme {
     @apply
-        p-8 min-w-full min-h-screen
+        min-w-full min-h-full
         text-[color:var(--neutral-text)]
         bg-[color:var(--neutral-bg)];
     ;
@@ -74,7 +79,7 @@
     --neutral-bg:       var(--neutral-light);
 }
 
-.label-light, .label-dark { @apply hidden text-[color:var(--neutral-text)] }
+.label-light, .label-dark { @apply hidden select-none hover:cursor-pointer text-normal }
 
 @media (prefers-color-scheme: dark) {
     .label-light { display: unset }
@@ -103,22 +108,71 @@
     border: 0;
 }
 
-.label-dark, .label-light {
-    margin-bottom: 1em;
- }
-
 .label-dark::before {
-    content: "[go dark]";
+    content: "go dark";
 }
 
 .toggle-dark:checked ~ .theme .label-dark::before {
-    content: "[go light]";
+    content: "go light";
 }
 
 .label-light::before {
-    content: "[go light]";
+    content: "go light";
 }
 
 .toggle-light:checked ~ .theme .label-light::before {
-    content: "[go dark]";
+    content: "go dark";
+}
+
+.bookmark {
+    @apply
+        px-8
+        !text-[color:var(--neutral-light)]
+        bg-[color:var(--accent-primary)]
+        basis-3/12
+    ;
+    font-family: "font-heading";
+}
+
+.bookmark-quicklinks {
+    @apply
+        h-[32%]
+        bg-[color:var(--accent-primary)]
+        static z-20
+        text-right
+    ;
+    padding-top: calc(5rem - 0.75em);
+}
+
+.bookmark h2 {
+    @apply !text-[color:var(--neutral-light)]
+}
+
+.bookmark-quicklinks a,
+.bookmark-quicklinks label {
+    @apply hover:text-[#c7c9d0]
+}
+
+.bookmark-headers {
+    @apply pb-20 min-w-max;
+    min-height: calc(100% - 32%);
+    font-variation-settings: 'wght' 500;
+    writing-mode: vertical-rl;
+}
+
+.logo {
+    user-select: none;
+    transform: rotate(-180deg);
+}
+
+.content {
+    @apply py-20 px-16 pr-12 grow;
+}
+
+.text-normal {
+    @apply text-lg;
+}
+
+.quote:first-letter {
+    margin-left: -0.54em;
 }
