@@ -1,15 +1,13 @@
 {
   "scripts": {
-    "build": "npx tailwindcss -i ./src/main.css -o ./public/main.css --minify",
+    "build": "npx tailwindcss -i ./src/web/main.css -o ./public/main.css --minify",
     "clean": "rm ./public/*.html ./public/**/*.html ./public/*.css ./public/**/*.css",
-    "post:html": "npx html-minifier-terser --input-dir ./src/ --file-ext html --output-dir ./public/ --collapse-whitespace --remove-comments",
+    "post:html": "npx html-minifier-terser --input-dir ./src/web/ --file-ext html --output-dir ./public/ --collapse-whitespace --remove-comments",
     "post:css": "npx postcss ./public/main.css -o ./public/main.min.css && rm ./public/main.css",
     "post": "npm run post:html && npm run post:css",
-    "publish": "npx gh-pages -t -d ./public",
     "all": "npm run build && npm run post",
-    "all+publish": "npm run all && npm run publish",
-    "dev:watch-html": "npx chokidar './src/*.html' -c 'npm run post:html'",
-    "dev:watch-css": "npx tailwindcss -i ./src/main.css -o ./public/main.min.css --watch"
+    "dev:watch-html": "npx chokidar './src/web/*.html' -c 'npm run post:html'",
+    "dev:watch-css": "npx tailwindcss -i ./src/web/main.css -o ./public/main.min.css --watch"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
@@ -17,7 +15,6 @@
     "chokidar-cli": "^3.0.0",
     "cssnano": "^5.1.14",
     "cssnano-preset-advanced": "^5.3.9",
-    "gh-pages": "^4.0.0",
     "html-minifier-terser": "^7.0.0",
     "postcss": "^8.4.19",
     "postcss-cli": "^10.0.0",
