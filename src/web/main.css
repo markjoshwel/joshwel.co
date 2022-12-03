@@ -1,3 +1,5 @@
+/* tailwind directives */
+
 @tailwind base;
 @layer base {
     h1, h2, h3, h4, h5, h6 {
@@ -15,6 +17,8 @@
 };
 @tailwind components;
 @tailwind utilities;
+
+/* font declarations */
 
 @font-face {
     font-family: "font-heading";
@@ -40,6 +44,12 @@
     font-display: swap;
 }
 
+html, body {
+    height: 100%
+}
+
+/* light/dark theming */
+
 :root {
     /* --accent-primary:         hsl(257 64% 41%);   pantone 2098 c */
     --accent-primary:         hsl(255 47% 50%);   /* pantone 2097 c */
@@ -48,10 +58,6 @@
     --neutral-light:          hsl(224 100% 98%);  /* pantone 11-0700 tcx */
     --neutral-dark:           hsl(240 8% 7%);     /* pantone black 3 2x */
 
-}
-
-html, body {
-    height: 100%
 }
 
 .theme {
@@ -108,24 +114,20 @@ html, body {
     border: 0;
 }
 
-.label-dark::before {
-    content: "go dark";
-}
+.label-dark::before { content: "go dark" }
+.toggle-dark:checked ~ .theme .label-dark::before { content: "go light" }
+.label-light::before { content: "go light" }
+.toggle-light:checked ~ .theme .label-light::before { content: "go dark" }
 
-.toggle-dark:checked ~ .theme .label-dark::before {
-    content: "go light";
-}
+/* always used css */
 
-.label-light::before {
-    content: "go light";
-}
-
-.toggle-light:checked ~ .theme .label-light::before {
-    content: "go dark";
+.text-normal {
+    @apply text-lg;
 }
 
 .bookmark {
     @apply
+        flex flex-col justify-start
         px-8
         !text-[color:var(--neutral-light)]
         bg-[color:var(--accent-primary)]
@@ -160,18 +162,11 @@ html, body {
     writing-mode: vertical-rl;
 }
 
-.logo {
-    user-select: none;
-    transform: rotate(-180deg);
-}
-
 .content {
-    @apply py-20 px-16 pr-12 grow;
+    @apply py-20 px-16 pr-12 grow z-10;
 }
 
-.text-normal {
-    @apply text-lg;
-}
+/* optionals */
 
 .quote:first-letter {
     margin-left: -0.54em;
