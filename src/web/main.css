@@ -7,13 +7,13 @@
         font-family: "font-heading";
         font-variation-settings: 'wght' 500;
     }
-    h1, h2, .logo { @apply text-6xl }
+    h1, h2 { @apply text-6xl }
     h3 { @apply text-5xl }
     h4 { @apply text-4xl }
     h5 { @apply text-3xl }
     h6 { @apply text-2xl }
     p { @apply mt-3 text-normal }
-    a { @apply hover:cursor-pointer hover:text-[color:var(--accent-secondary)] }
+    a { @apply hover:cursor-pointer hover:text-[color:var(--neutral-text-hover)] }
 };
 @tailwind components;
 @tailwind utilities;
@@ -56,8 +56,9 @@ html, body {
     --accent-secondary-light: hsl(256 35% 47%);   /* pantone 2096 c */
     --accent-secondary-dark:  hsl(256 33% 55%);   /* pantone 2095 c */
     --neutral-light:          hsl(224 100% 98%);  /* pantone 11-0700 tcx */
+    --neutral-light-hover:    hsl(260 24% 68%);   /* pantone 2093 c */
     --neutral-dark:           hsl(240 8% 7%);     /* pantone black 3 2x */
-
+    --neutral-dark-hover:     hsl(256 33% 55%);   /* accent secondary dark */
 }
 
 .theme {
@@ -68,21 +69,24 @@ html, body {
     ;
 
     /* default theme to light */
-    --accent-secondary: var(--accent-secondary-light);
-    --neutral-text:     var(--neutral-dark);
-    --neutral-bg:       var(--neutral-light);
+    --accent-secondary:   var(--accent-secondary-light);
+    --neutral-text:       var(--neutral-dark);
+    --neutral-text-hover: var(--neutral-dark-hover);
+    --neutral-bg:         var(--neutral-light);
 }
 
 .toggle-dark:checked ~ .theme {
-    --accent-secondary: var(--accent-secondary-dark);
-    --neutral-text:     var(--neutral-light);
-    --neutral-bg:       var(--neutral-dark);
+    --accent-secondary:   var(--accent-secondary-dark);
+    --neutral-text:       var(--neutral-light);
+    --neutral-text-hover: var(--neutral-light-hover);
+    --neutral-bg:         var(--neutral-dark);
 }
 
 .toggle-light:checked ~ .theme {
-    --accent-secondary: var(--accent-secondary-light);
-    --neutral-text:     var(--neutral-dark);
-    --neutral-bg:       var(--neutral-light);
+    --accent-secondary:   var(--accent-secondary-light);
+    --neutral-text:       var(--neutral-dark);
+    --neutral-text-hover: var(--neutral-dark-hover);
+    --neutral-bg:         var(--neutral-light);
 }
 
 .label-light, .label-dark { @apply hidden select-none hover:cursor-pointer text-normal }
@@ -93,9 +97,10 @@ html, body {
 
     .theme {
         /* change default theme to dark */
-        --accent-secondary: var(--accent-secondary-dark);
-        --neutral-text:     var(--neutral-light);
-        --neutral-bg:       var(--neutral-dark);
+        --accent-secondary:   var(--accent-secondary-dark);
+        --neutral-text:       var(--neutral-light);
+        --neutral-text-hover: var(--neutral-light-hover);
+        --neutral-bg:         var(--neutral-dark);
     }
 }
 
@@ -122,7 +127,16 @@ html, body {
 /* always used css */
 
 .text-normal {
-    @apply text-lg;
+    /* @apply ... */
+}
+
+.text-footer {
+    @apply text-sm;
+    font-family: "font-heading";
+}
+
+.icon {
+    @apply fill-[color:var(--neutral-text)] hover:fill-[color:var(--neutral-text-hover)];
 }
 
 .bookmark {
