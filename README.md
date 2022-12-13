@@ -17,12 +17,12 @@ There are two independent sets of instructions that can be followed.
 
 ### For Developing
 
-1. Install [Node](https://nodejs.org/en/) or [Bun](https://bun.sh/), both have been tested to work.
+1. Install [Node](https://nodejs.org/en/)
 
 2. Install the projects' dependencies
 
    ```shell
-   npm install  # or bun install
+   npm install
    ```
 
 3. You're all set! See [Development](#development) for more information on workflow and commands.
