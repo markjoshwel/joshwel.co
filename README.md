@@ -17,7 +17,7 @@ There are two independent sets of instructions that can be followed.
 
 ### For Developing
 
-1. Install [Node](https://nodejs.org/en/)
+1. Install [Node](https://nodejs.org/en/), latest preferred.
 
 2. Install the projects' dependencies
 
@@ -28,6 +28,10 @@ There are two independent sets of instructions that can be followed.
 3. You're all set! See [Development](#development) for more information on workflow and commands.
 
 ### For Writing
+
+> **Note**
+>
+> The minimum Python version required is the oldest supported release of Python. At time of writing, this is Python 3.7.
 
 1. Install [Poetry](https://python-poetry.org/docs/#installing-with-the-official-installer)
 
@@ -55,7 +59,7 @@ I use the following workflow:
 ### Shorthands Commands
 
 ```shell
-npm run all          # runs all build and post scripts
+npm run all  # runs all build and post scripts
 ```
 
 ### Watching Commands
@@ -72,8 +76,8 @@ Preview the website from `public/index.html`.
 ### Building Commands
 
 ```shell
-npm run build    # build css using tailwind
-npm run post     # clean css and html
+npm run build  # build css using tailwind
+npm run post   # clean css and html
 ```
 
 ## Writing
