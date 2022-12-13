@@ -131,53 +131,47 @@ html, body {
 }
 
 .text-footer {
-    @apply text-sm;
-    font-family: "font-heading";
+    @apply text-xs !mt-0;
 }
 
 .icon {
     @apply fill-[color:var(--neutral-text)] hover:fill-[color:var(--neutral-text-hover)];
 }
 
-.bookmark {
+.top {
     @apply
-        flex flex-col justify-start
-        px-8
-        !text-[color:var(--neutral-light)]
-        bg-[color:var(--accent-primary)]
-        basis-3/12
+        flex-none grow-0
+        h-[calc((100vh-27rem)/2)] max-w-xl w-full
+        px-6
     ;
-    font-family: "font-heading";
 }
 
-.bookmark-quicklinks {
+.box {
     @apply
-        h-[32%]
+        flex-none overflow-hidden 
+        h-[27rem] max-w-xl w-full
+        p-6
+
         bg-[color:var(--accent-primary)]
-        static z-20
-        text-right
     ;
-    padding-top: calc(5rem - 0.75em);
-}
-
-.bookmark h2 {
-    @apply !text-[color:var(--neutral-light)]
-}
-
-.bookmark-quicklinks a,
-.bookmark-quicklinks label {
-    @apply hover:text-[#c7c9d0]
-}
-
-.bookmark-headers {
-    @apply pb-20 min-w-max;
-    min-height: calc(100% - 32%);
-    font-variation-settings: 'wght' 500;
-    writing-mode: vertical-rl;
 }
 
 .content {
-    @apply py-20 px-16 pr-12 grow z-10;
+    @apply
+        flex-grow
+        max-w-xl w-full
+        pt-[calc((100vh-27rem)/2.5)] px-6
+    ;
+}
+
+.footer {
+    @apply
+        flex-none
+        max-w-xl w-full
+        px-6 pb-20 pt-20
+        flex flex-row
+        justify-between
+    ;
 }
 
 /* optionals */
