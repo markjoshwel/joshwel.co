@@ -99,11 +99,18 @@ I use the following workflow:
 
 ## Licence
 
-This website is free and unencumbered software and text released into the public domain. For more information, please refer to the [UNLICENCE](UNLICENCE) file or visit <http://unlicense.org>.
+The website's _source code_ (`src/**/*`) is free and unencumbered software, text and assets released into the public domain.
+
+- HTML and CSS source files (`src/web/**`) are under the Unlicence.
+- Text and Assets (`src/[!web]**/*`) are under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.
+
+For more information on the Unlicence, please refer to the [UNLICENCE](UNLICENCE) file or visit <http://unlicense.org>.
+
+For more information on the CC0, please refer to [CC0](CCO) or visit <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 ### Third Party Open-Source Licences
 
-However, certain assets (`public/assets/thirdparty/**/*`) fall under copyright. Their appropriate licences are included in the repository, following the naming convention of their copyrighted counterparts.
+However, certain assets (`public/assets/thirdparty/**`) fall under copyright. Their appropriate licences are included in the repository, following the naming convention of their copyrighted counterparts.
 
 - **Space Grotesk**  
   [Website](https://floriankarsten.github.io/space-grotesk/) • [Source Code](https://github.com/floriankarsten/space-grotesk) • [Licence](public/assets/thirdparty/font-SpaceGrotesk-LICENCE.txt)
