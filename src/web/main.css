@@ -1,4 +1,4 @@
-/* tailwind directives */
+/* tailwind directive   s */
 
 @tailwind base;
 @layer base {
@@ -6,13 +6,17 @@
         @apply text-[color:var(--accent-secondary)] mb-5;
         font-family: "font-heading";
         font-variation-settings: 'wght' 500;
+        line-height: 90%;
     }
-    h1, h2 { @apply text-6xl }
-    h3 { @apply text-5xl }
-    h4 { @apply text-4xl }
-    h5 { @apply text-3xl }
-    h6 { @apply text-2xl }
-    p { @apply mt-3 text-normal }
+    h1 { @apply text-[3.5rem] }
+    h2 { @apply text-5xl }
+    h3 { @apply text-4xl }
+    h4 { @apply text-3xl }
+    h5 { @apply text-2xl }
+    h6 { @apply text-xl }
+    p {
+        @apply mt-3 text-normal;
+    }
     a { @apply hover:cursor-pointer hover:text-[color:var(--neutral-text-hover)] }
 };
 @tailwind components;
@@ -65,7 +69,9 @@ html, body {
     @apply
         min-w-full min-h-full
         text-[color:var(--neutral-text)]
-        bg-[color:var(--neutral-bg)];
+        bg-[color:var(--neutral-bg)]
+
+        flex flex-col items-center
     ;
 
     /* default theme to light */
@@ -73,6 +79,10 @@ html, body {
     --neutral-text:       var(--neutral-dark);
     --neutral-text-hover: var(--neutral-dark-hover);
     --neutral-bg:         var(--neutral-light);
+}
+
+.toggle-dark, .toggle-light {
+    @apply absolute overflow-hidden;
 }
 
 .toggle-dark:checked ~ .theme {
@@ -155,11 +165,14 @@ html, body {
         h-[27rem] max-w-xl w-full
         p-6
 
+        flex flex-col
+
         bg-[color:var(--accent-primary)]
         text-[color:var(--neutral-light)]
     ;
 
     font-family: "font-heading";
+    line-height: 115%;
 }
 
 .box-header {
@@ -180,15 +193,24 @@ html, body {
 }
 
 .box-title h1 {
-    @apply text-[color:var(--neutral-light)];
-    line-height: 90%;
+    @apply text-[color:var(--neutral-light)] !mb-0;
 }
 
 .box-aftertitle {
     @apply
-        flex flex-row justify-between
+        grow
+        flex flex-row
+        justify-between items-end
     ;
 }
+
+.box-aftertitle-subtitle { @apply mr-8 }
+
+.box-aftertitle-contents {
+    @apply min-w-max text-right;
+ }
+
+ .box-aftertitle-subtitle p, .box-aftertitle-contents p { @apply !pt-0 }
 
 .content {
     @apply
