@@ -59,7 +59,8 @@ I use the following workflow:
 ### Shorthands Commands
 
 ```shell
-npm run all  # runs all build and post scripts
+npm run all    # runs all build and post scripts
+npm run clean  # wipe public/ of all html and css files
 ```
 
 ### Watching Commands
