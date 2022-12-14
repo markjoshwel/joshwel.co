@@ -1,28 +1,28 @@
-/* tailwind directive   s */
+/* tailwind directives */
 
 @tailwind base;
 @layer base {
     h1, h2, h3, h4, h5, h6 {
-        @apply text-[color:var(--accent-secondary)] mb-5;
+        @apply text-[color:var(--accent-secondary)];
         font-family: "font-heading";
         font-variation-settings: 'wght' 500;
         line-height: 90%;
     }
-    h1 { @apply text-[3.5rem] }
-    h2 { @apply text-5xl }
-    h3 { @apply text-4xl }
-    h4 { @apply text-3xl }
-    h5 { @apply text-2xl }
-    h6 { @apply text-xl }
+    h1 { @apply text-[3.5rem] mb-7 }
+    h2 { @apply text-[2.75rem] mb-6 }
+    h3 { @apply text-4xl mb-5 }
+    h4 { @apply text-3xl mb-4 }
+    h5 { @apply text-2xl mb-3 }
+    h6 { @apply text-xl mb-3 }
     p {
-        @apply mt-3 text-normal;
+        @apply my-5 text-normal;
     }
     a { @apply hover:cursor-pointer hover:text-[color:var(--neutral-text-hover)] }
 };
 @tailwind components;
 @tailwind utilities;
 
-/* font declarations */
+/* font declarations and text sizing*/
 
 @font-face {
     font-family: "font-heading";
@@ -48,8 +48,12 @@
     font-display: swap;
 }
 
-html, body {
-    height: 100%
+.text-normal {
+    /* @apply ... */
+}
+
+.text-footer {
+    @apply !text-xs !mt-0;
 }
 
 /* light/dark theming */
@@ -63,6 +67,7 @@ html, body {
     --neutral-light-hover:    hsl(260 24% 68%);   /* pantone 2093 c */
     --neutral-dark:           hsl(240 8% 7%);     /* pantone black 3 2x */
     --neutral-dark-hover:     hsl(256 33% 55%);   /* accent secondary dark */
+    --neutral-grey:           #727377;            /* 25% darker neutral-light */
 }
 
 .theme {
@@ -134,115 +139,86 @@ html, body {
 .label-light::before { content: "go light" }
 .toggle-light:checked ~ .theme .label-light::before { content: "go dark" }
 
-/* always used css */
+/* layout */
 
-.text-normal {
-    /* @apply ... */
+.theme > * {
+    @apply max-w-xl w-full px-6;
 }
 
-.text-footer {
-    @apply !text-xs !mt-0;
+.breadcrumbs ol, .contents ol {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-.icon {
-    @apply fill-[color:var(--neutral-text)] hover:fill-[color:var(--neutral-text-hover)];
+.crumb {
+    display: inline-block;
 }
 
-.top {
+.crumb a::after {
+    display: inline-block;
+    content: '/';
+    padding: 0 4px;
+}
+
+.anchorlink a::after {
+    content: ' ↘';
+}
+
+section { @apply mt-16 }
+
+article {
+    @apply !px-0;
+    padding-top: calc((100vh - 27rem) / 2);
+    padding-top: calc((100svh - 27rem) / 2);
+}
+
+article > header {
     @apply
-        flex-none grow-0
-        max-w-xl w-full
-        px-6
-    ;
-
-    height: calc((100vh - 27rem) / 2);
-    height: calc((100svh - 27rem) / 2);
-}
-
-.box {
-    @apply
-        flex-none overflow-hidden 
-        h-[27rem] max-w-xl w-full
-        p-6
-
-        flex flex-col
-
+        flex-none overflow-hidden
+        h-[27rem] !p-6
         bg-[color:var(--accent-primary)]
         text-[color:var(--neutral-light)]
+
+        flex flex-col
     ;
 
     font-family: "font-heading";
     line-height: 115%;
+
+    margin-bottom: calc((100vh - 27rem) / 2.75);
+    margin-bottom: calc((100svh - 27rem) / 2.75);
 }
 
-.box-header {
+article > header > h1 {
     @apply
-        flex flex-row justify-between
-        pb-5
+        justify-self-start w-[80%]
+        text-[color:var(--neutral-light)] !mb-0
     ;
 }
 
-.box-header * {
-    @apply
-        text-[color:var(--neutral-light)] hover:text-[color:var(--neutral-light)]
-    ;
+article > * {
+    @apply px-6;
 }
 
-.box-title {
-    @apply justify-self-start w-[80%];
-}
-
-.box-title h1 {
-    @apply text-[color:var(--neutral-light)] !mb-0;
-}
-
-.box-aftertitle {
-    @apply
-        grow
-        flex flex-row
-        justify-between items-end
-    ;
-}
-
-.box-aftertitle-subtitle { @apply mr-8 }
-
-.box-aftertitle-contents {
-    @apply min-w-max text-right;
- }
-
- .box-aftertitle-subtitle p, .box-aftertitle-contents p { @apply !pt-0 }
-
-.content {
-    @apply
-        flex-grow
-        max-w-xl w-full
-        px-6
-    ;
-
-    padding-top: calc((100vh - 27rem) / 2.75);
-    padding-top: calc((100svh - 27rem) / 2.75);
-}
-
-.footer {
+footer {
     @apply
         flex-none
-        max-w-xl w-full
-        px-6 pb-20 pt-20
+        pb-20 pt-20
         flex flex-row
         justify-between
     ;
 }
 
-.footer p {
-    @apply !text-[#727377] !text-xs !mt-0;
-}
+footer p { @apply !text-[color:var(--neutral-grey)] !text-xs !mt-0 }
 
-.footer svg {
-    @apply fill-[#727377];
-}
+footer .icon { @apply fill-[color:var(--neutral-grey)] }
 
 /* optionals */
 
-.quote:first-letter {
-    margin-left: -0.54em;
+.icon {
+    @apply fill-[color:var(--neutral-text)] hover:fill-[color:var(--neutral-text-hover)];
 }
+
+.quote:first-letter { margin-left: -0.54em }
+
+hr { @apply mt-10 mb-10 border-[color:var(--neutral-grey)] }
