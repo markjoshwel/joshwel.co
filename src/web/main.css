@@ -131,7 +131,7 @@ html, body {
 }
 
 .text-footer {
-    @apply text-xs !mt-0;
+    @apply !text-xs !mt-0;
 }
 
 .icon {
@@ -141,9 +141,12 @@ html, body {
 .top {
     @apply
         flex-none grow-0
-        h-[calc((100vh-27rem)/2)] max-w-xl w-full
+        max-w-xl w-full
         px-6
     ;
+
+    height: calc((100vh - 27rem) / 2);
+    height: calc((100svh - 27rem) / 2);
 }
 
 .box {
@@ -153,6 +156,37 @@ html, body {
         p-6
 
         bg-[color:var(--accent-primary)]
+        text-[color:var(--neutral-light)]
+    ;
+
+    font-family: "font-heading";
+}
+
+.box-header {
+    @apply
+        flex flex-row justify-between
+        pb-5
+    ;
+}
+
+.box-header * {
+    @apply
+        text-[color:var(--neutral-light)] hover:text-[color:var(--neutral-light)]
+    ;
+}
+
+.box-title {
+    @apply justify-self-start w-[80%];
+}
+
+.box-title h1 {
+    @apply text-[color:var(--neutral-light)];
+    line-height: 90%;
+}
+
+.box-aftertitle {
+    @apply
+        flex flex-row justify-between
     ;
 }
 
@@ -160,8 +194,11 @@ html, body {
     @apply
         flex-grow
         max-w-xl w-full
-        pt-[calc((100vh-27rem)/2.5)] px-6
+        px-6
     ;
+
+    padding-top: calc((100vh - 27rem) / 2.75);
+    padding-top: calc((100svh - 27rem) / 2.75);
 }
 
 .footer {
@@ -172,6 +209,14 @@ html, body {
         flex flex-row
         justify-between
     ;
+}
+
+.footer p {
+    @apply !text-[#727377] !text-xs !mt-0;
+}
+
+.footer svg {
+    @apply fill-[#727377];
 }
 
 /* optionals */
