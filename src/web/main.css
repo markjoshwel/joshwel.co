@@ -1,31 +1,40 @@
+/* tailwind directives */
+
 @tailwind base;
 @layer base {
     h1, h2, h3, h4, h5, h6 {
         @apply text-[color:var(--accent-secondary)];
         font-family: "font-heading";
+        font-variation-settings: 'wght' 500;
+        line-height: 90%;
     }
-    h1, h2 { @apply text-6xl }
-    h3 { @apply text-5xl }
-    h4 { @apply text-4xl }
-    h5 { @apply text-3xl }
-    h6 { @apply text-2xl }
-    p { @apply mt-3 text-lg }
+    h1 { @apply text-[3.5rem] mb-7 }
+    h2 { @apply text-[2.75rem] mb-6 }
+    h3 { @apply text-4xl mb-5 }
+    h4 { @apply text-3xl mb-4 }
+    h5 { @apply text-2xl mb-3 }
+    h6 { @apply text-xl mb-3 }
+    p {
+        @apply my-5 text-normal;
+    }
+    a { @apply hover:cursor-pointer hover:text-[color:var(--neutral-text-hover)] }
 };
 @tailwind components;
 @tailwind utilities;
 
+/* font declarations and text sizing*/
 
 @font-face {
     font-family: "font-heading";
-    src: url("./assets/thirdparty/font-SpaceGroteskS.woff2") format("woff2");
-    font-weight: 700;
+    src: url("./assets/thirdparty/font-SpaceGroteskV.woff2") format("woff2");
+    font-weight: 400;
     font-style:   normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: "font-text";
-    src: url("./assets/thirdparty/font-iAWriterQuattroV.woff2") format("woff2");
+    src: url("./assets/thirdparty/font-iAWriterQuattroS.woff2") format("woff2");
     font-weight:  400;
     font-style:   normal;
     font-display: swap;
@@ -39,42 +48,63 @@
     font-display: swap;
 }
 
+.text-normal {
+    /* @apply ... */
+}
+
+.text-footer {
+    @apply !text-xs !mt-0;
+}
+
+/* light/dark theming */
+
 :root {
-    --accent-primary:         hsl(257 64% 41%);   /* pantone 2098 c */
-    /* --accent-primary:         hsl(255 47% 50%);   pantone 2097 c */
+    /* --accent-primary:         hsl(257 64% 41%);   pantone 2098 c */
+    --accent-primary:         hsl(255 47% 50%);   /* pantone 2097 c */
     --accent-secondary-light: hsl(256 35% 47%);   /* pantone 2096 c */
     --accent-secondary-dark:  hsl(256 33% 55%);   /* pantone 2095 c */
     --neutral-light:          hsl(224 100% 98%);  /* pantone 11-0700 tcx */
+    --neutral-light-hover:    hsl(260 24% 68%);   /* pantone 2093 c */
     --neutral-dark:           hsl(240 8% 7%);     /* pantone black 3 2x */
-
+    --neutral-dark-hover:     hsl(256 33% 55%);   /* accent secondary dark */
+    --neutral-grey:           #727377;            /* 25% darker neutral-light */
 }
 
 .theme {
     @apply
-        p-8 min-w-full min-h-screen
+        min-w-full min-h-full
         text-[color:var(--neutral-text)]
-        bg-[color:var(--neutral-bg)];
+        bg-[color:var(--neutral-bg)]
+
+        flex flex-col items-center
     ;
 
     /* default theme to light */
-    --accent-secondary: var(--accent-secondary-light);
-    --neutral-text:     var(--neutral-dark);
-    --neutral-bg:       var(--neutral-light);
+    --accent-secondary:   var(--accent-secondary-light);
+    --neutral-text:       var(--neutral-dark);
+    --neutral-text-hover: var(--neutral-dark-hover);
+    --neutral-bg:         var(--neutral-light);
+}
+
+.toggle-dark, .toggle-light {
+    @apply absolute overflow-hidden;
 }
 
 .toggle-dark:checked ~ .theme {
-    --accent-secondary: var(--accent-secondary-dark);
-    --neutral-text:     var(--neutral-light);
-    --neutral-bg:       var(--neutral-dark);
+    --accent-secondary:   var(--accent-secondary-dark);
+    --neutral-text:       var(--neutral-light);
+    --neutral-text-hover: var(--neutral-light-hover);
+    --neutral-bg:         var(--neutral-dark);
 }
 
 .toggle-light:checked ~ .theme {
-    --accent-secondary: var(--accent-secondary-light);
-    --neutral-text:     var(--neutral-dark);
-    --neutral-bg:       var(--neutral-light);
+    --accent-secondary:   var(--accent-secondary-light);
+    --neutral-text:       var(--neutral-dark);
+    --neutral-text-hover: var(--neutral-dark-hover);
+    --neutral-bg:         var(--neutral-light);
 }
 
-.label-light, .label-dark { @apply hidden text-[color:var(--neutral-text)] }
+.label-light, .label-dark { @apply hidden select-none hover:cursor-pointer text-normal }
 
 @media (prefers-color-scheme: dark) {
     .label-light { display: unset }
@@ -82,9 +112,10 @@
 
     .theme {
         /* change default theme to dark */
-        --accent-secondary: var(--accent-secondary-dark);
-        --neutral-text:     var(--neutral-light);
-        --neutral-bg:       var(--neutral-dark);
+        --accent-secondary:   var(--accent-secondary-dark);
+        --neutral-text:       var(--neutral-light);
+        --neutral-text-hover: var(--neutral-light-hover);
+        --neutral-bg:         var(--neutral-dark);
     }
 }
 
@@ -103,22 +134,91 @@
     border: 0;
 }
 
-.label-dark, .label-light {
-    margin-bottom: 1em;
- }
+.label-dark::before { content: "go dark" }
+.toggle-dark:checked ~ .theme .label-dark::before { content: "go light" }
+.label-light::before { content: "go light" }
+.toggle-light:checked ~ .theme .label-light::before { content: "go dark" }
 
-.label-dark::before {
-    content: "[go dark]";
+/* layout */
+
+.theme > * {
+    @apply max-w-xl w-full px-6;
 }
 
-.toggle-dark:checked ~ .theme .label-dark::before {
-    content: "[go light]";
+.breadcrumbs ol, .contents ol {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-.label-light::before {
-    content: "[go light]";
+.crumb {
+    display: inline-block;
 }
 
-.toggle-light:checked ~ .theme .label-light::before {
-    content: "[go dark]";
+.crumb a::after {
+    display: inline-block;
+    content: '/';
+    padding: 0 4px;
 }
+
+.anchorlink a::after {
+    content: ' ↘';
+}
+
+section { @apply mt-16 }
+
+article {
+    @apply !px-0;
+    padding-top: calc((100vh - 27rem) / 2);
+    padding-top: calc((100svh - 27rem) / 2);
+}
+
+article > header {
+    @apply
+        flex-none overflow-hidden
+        h-[27rem] !p-6
+        bg-[color:var(--accent-primary)]
+        text-[color:var(--neutral-light)]
+
+        flex flex-col
+    ;
+
+    font-family: "font-heading";
+    line-height: 115%;
+
+    margin-bottom: calc((100vh - 27rem) / 2.75);
+    margin-bottom: calc((100svh - 27rem) / 2.75);
+}
+
+article > header > h1 {
+    @apply
+        justify-self-start w-[80%]
+        text-[color:var(--neutral-light)] !mb-0
+    ;
+}
+
+article > * {
+    @apply px-6;
+}
+
+footer {
+    @apply
+        flex-none
+        pb-20 pt-20
+        flex flex-row
+        justify-between
+    ;
+}
+
+footer p { @apply !text-[color:var(--neutral-grey)] !text-xs !mt-0 }
+
+footer .icon { @apply fill-[color:var(--neutral-grey)] }
+
+/* optionals */
+
+.icon {
+    @apply fill-[color:var(--neutral-text)] hover:fill-[color:var(--neutral-text-hover)];
+}
+
+.quote:first-letter { margin-left: -0.54em }
+
+hr { @apply mt-10 mb-10 border-[color:var(--neutral-grey)] }

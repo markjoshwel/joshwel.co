@@ -17,17 +17,21 @@ There are two independent sets of instructions that can be followed.
 
 ### For Developing
 
-1. Install [Node](https://nodejs.org/en/) or [Bun](https://bun.sh/), both have been tested to work.
+1. Install [Node](https://nodejs.org/en/), latest preferred.
 
 2. Install the projects' dependencies
 
    ```shell
-   npm install  # or bun install
+   npm install
    ```
 
 3. You're all set! See [Development](#development) for more information on workflow and commands.
 
 ### For Writing
+
+> **Note**
+>
+> The minimum Python version required is the oldest supported release of Python. At time of writing, this is Python 3.7.
 
 1. Install [Poetry](https://python-poetry.org/docs/#installing-with-the-official-installer)
 
@@ -55,7 +59,8 @@ I use the following workflow:
 ### Shorthands Commands
 
 ```shell
-npm run all          # runs all build and post scripts
+npm run all    # runs all build and post scripts
+npm run clean  # wipe public/ of all html and css files
 ```
 
 ### Watching Commands
@@ -72,8 +77,8 @@ Preview the website from `public/index.html`.
 ### Building Commands
 
 ```shell
-npm run build    # build css using tailwind
-npm run post     # clean css and html
+npm run build  # build css using tailwind
+npm run post   # clean css and html
 ```
 
 ## Writing
@@ -95,11 +100,18 @@ I use the following workflow:
 
 ## Licence
 
-This website is free and unencumbered software and text released into the public domain. For more information, please refer to the [UNLICENCE](UNLICENCE) file or visit <http://unlicense.org>.
+The website's _source code_ (`src/**/*`) is free and unencumbered software, text and assets released into the public domain.
+
+- HTML and CSS source files (`src/web/**`) are under the Unlicence.
+- Text and Assets (`src/[!web]**/*`) are under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.
+
+For more information on the Unlicence, please refer to the [UNLICENCE](UNLICENCE) file or visit <http://unlicense.org>.
+
+For more information on the CC0, please refer to [CC0](CCO) or visit <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 ### Third Party Open-Source Licences
 
-However, certain assets (`public/assets/thirdparty/**/*`) fall under copyright. Their appropriate licences are included in the repository, following the naming convention of their copyrighted counterparts.
+However, certain assets (`public/assets/thirdparty/**`) fall under copyright. Their appropriate licences are included in the repository, following the naming convention of their copyrighted counterparts.
 
 - **Space Grotesk**  
   [Website](https://floriankarsten.github.io/space-grotesk/) • [Source Code](https://github.com/floriankarsten/space-grotesk) • [Licence](public/assets/thirdparty/font-SpaceGrotesk-LICENCE.txt)
