@@ -3,17 +3,17 @@
 @tailwind base;
 @layer base {
     h1, h2, h3, h4, h5, h6 {
-        @apply text-[color:var(--accent-secondary)];
+        @apply text-[color:var(--accent-secondary)] scroll-mt-16;
         font-family: "font-heading";
         font-variation-settings: 'wght' 500;
         line-height: 90%;
     }
-    h1 { @apply text-[3.5rem] mb-7 }
-    h2 { @apply text-[2.75rem] mb-6 }
-    h3 { @apply text-4xl mb-5 }
-    h4 { @apply text-3xl mb-4 }
-    h5 { @apply text-2xl mb-3 }
-    h6 { @apply text-xl mb-3 }
+    h1 { @apply text-[2.75rem] sm:text-[3rem] md:text-[3.5rem] leading-[1] mb-7 }
+    h2 { @apply text-[2rem] sm:text-[2.5rem] md:text-[2.75rem] leading-[1] mb-6 }
+    h3 { @apply text-2xl sm:text-3xl md:text-4xl mb-5 }
+    h4 { @apply text-xl sm:text-2xl md:text-3xl mb-4 }
+    h5 { @apply text-lg sm:text-xl md:text-2xl mb-3 }
+    h6 { @apply text-[1.075rem] sm:text-lg md:text-xl mb-3 }
     p {
         @apply my-5 text-normal;
     }
@@ -22,7 +22,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* font declarations and text sizing*/
+/* font declaration and sizing */
 
 @font-face {
     font-family: "font-heading";
@@ -48,13 +48,7 @@
     font-display: swap;
 }
 
-.text-normal {
-    /* @apply ... */
-}
-
-.text-footer {
-    @apply !text-xs !mt-0;
-}
+.text-normal { @apply text-[0.8rem] sm:text-sm md:text-base }
 
 /* light/dark theming */
 
@@ -67,7 +61,7 @@
     --neutral-light-hover:    hsl(260 24% 68%);   /* pantone 2093 c */
     --neutral-dark:           hsl(240 8% 7%);     /* pantone black 3 2x */
     --neutral-dark-hover:     hsl(256 33% 55%);   /* accent secondary dark */
-    --neutral-grey:           #727377;            /* 25% darker neutral-light */
+    --neutral-grey:           #a1a1aa;            /* 25% darker neutral-light */
 }
 
 .theme {
@@ -87,7 +81,7 @@
 }
 
 .toggle-dark, .toggle-light {
-    @apply absolute overflow-hidden;
+    @apply absolute overflow-hidden hidden;
 }
 
 .toggle-dark:checked ~ .theme {
@@ -141,11 +135,15 @@
 
 /* layout */
 
+html, body { height: 100% }
+
 .theme > * {
-    @apply max-w-xl w-full px-6;
+    @apply max-w-md sm:max-w-lg md:max-w-xl w-full px-6;
 }
 
-.breadcrumbs ol, .contents ol {
+.header-top-labels { @apply min-w-max text-right !leading-[115%]; }
+
+.header-top-breadcrumbs ol, .contents ol {
     list-style-type: none;
     padding-left: 0;
 }
@@ -172,6 +170,8 @@ article {
     padding-top: calc((100svh - 27rem) / 2);
 }
 
+article > * { @apply px-6 mx-2 md:mx-0 }
+
 article > header {
     @apply
         flex-none overflow-hidden
@@ -183,21 +183,23 @@ article > header {
     ;
 
     font-family: "font-heading";
-    line-height: 115%;
 
     margin-bottom: calc((100vh - 27rem) / 2.75);
     margin-bottom: calc((100svh - 27rem) / 2.75);
 }
 
-article > header > h1 {
+.header-top, .header-bottom { @apply flex flex-row justify-between text-normal }
+.header-top { @apply pb-5 items-start !leading-[115%] }
+.header-bottom { @apply grow items-end }
+.header-bottom-subtitle { @apply mr-2 md:mr-4 lg:mr-8 !my-0 !leading-[115%] }
+.header-bottom-contents { @apply min-w-max text-right !leading-[115%]; }
+
+article > header h1 {
     @apply
         justify-self-start w-[80%]
         text-[color:var(--neutral-light)] !mb-0
+        leading-[90%]
     ;
-}
-
-article > * {
-    @apply px-6;
 }
 
 footer {
@@ -209,9 +211,16 @@ footer {
     ;
 }
 
-footer p { @apply !text-[color:var(--neutral-grey)] !text-xs !mt-0 }
+footer p {
+    @apply
+        !text-[color:var(--neutral-grey)]
+        !leading-4 !text-[0.65rem] lg:!text-xs
+        !mt-0
+        h-full
+    ;
+}
 
-footer .icon { @apply fill-[color:var(--neutral-grey)] }
+footer svg { @apply fill-[color:var(--neutral-grey)] h-12 }
 
 /* optionals */
 
